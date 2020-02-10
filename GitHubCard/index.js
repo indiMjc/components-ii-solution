@@ -73,7 +73,7 @@ function CardMaker(userData) {
 
   
 
-// Alternative solution (uncomment lines 84-114):
+// Alternative solution (comment out lines 3-25 and uncomment 84-114):
   
 // Vocabulary:  Promises, Promise.all(), async/await, IFFE (Immediately Invoked Function Expression), destructuring
 
