@@ -27,14 +27,13 @@ axios
 	});
 
 // refactored using Promise.all, async/await and IFFE (Immediately Invoked Function Expression)
+
 // (async function getData() {
 // 	try {
 // 		const [myUserData, myFollowersData] = await Promise.all([
 // 			axios.get('https://api.github.com/users/indiMjc'),
 // 			axios.get('https://api.github.com/users/indiMjc/followers')
 // 		]);
-// 		console.log(' : myUserData', myUserData);
-// 		console.log(' : myFollowersData', myFollowersData);
 
 // 		cardContainer.appendChild(CardMaker(myUserData.data));
 
