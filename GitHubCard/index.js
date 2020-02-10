@@ -2,6 +2,98 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
+const cardContainer = document.querySelector('.cards');
+
+axios
+	.get('https://api.github.com/users/indiMjc')
+	.then(response => {
+		cardContainer.appendChild(CardMaker(response.data));
+	})
+	.catch(error => {
+		console.log('The data was not returned', error);
+	});
+
+//stretch
+axios
+	.get('https://api.github.com/users/indiMjc/followers')
+	.then(response => {
+		response.data.forEach(async user => {
+			const userResponse = await axios.get(user.url);
+			cardContainer.appendChild(CardMaker(userResponse.data));
+		});
+	})
+	.catch(error => {
+		console.log('The data was not returned', error);
+	});
+
+// refactored using Promise.all, async/await and IFFE (Immediately Invoked Function Expression)
+// (async function getData() {
+// 	try {
+// 		const [myUserData, myFollowersData] = await Promise.all([
+// 			axios.get('https://api.github.com/users/indiMjc'),
+// 			axios.get('https://api.github.com/users/indiMjc/followers')
+// 		]);
+// 		console.log(' : myUserData', myUserData);
+// 		console.log(' : myFollowersData', myFollowersData);
+
+// 		cardContainer.appendChild(CardMaker(myUserData.data));
+
+// 		myFollowersData.data.forEach(async user => {
+// 			const getFollower = await axios.get(user.url);
+
+// 			cardContainer.appendChild(CardMaker(getFollower.data));
+// 		});
+// 	} catch (err) {
+// 		console.log('Data was not returned', err);
+// 	}
+// })();
+
+function CardMaker(userData) {
+	//create elements
+	let card = document.createElement('div');
+	let userImg = document.createElement('img');
+	let cardInfo = document.createElement('div');
+	let user = document.createElement('h3');
+	let userName = document.createElement('p');
+	let location = document.createElement('p');
+	let profile = document.createElement('p');
+	let profileLink = document.createElement('a');
+	let follower = document.createElement('p');
+	let followingCount = document.createElement('p');
+	let bio = document.createElement('p');
+
+	//classes
+	card.classList.add('card');
+	cardInfo.classList.add('card-info');
+	user.classList.add('name');
+	userName.classList.add('username');
+
+	//populate
+	userImg.src = userData.avatar_url;
+	user.textContent = userData.name;
+	userName.textContent = userData.login;
+	location.textContent = `Location: ${userData.location}`;
+	profile.textContent = `Profile: `;
+	profileLink.textContent = userData.html_url;
+	profileLink.href = userData.hrml_url;
+	follower.textContent = `Followers: ${userData.followers}`;
+	followingCount.textContent = `Following: ${userData.following}`;
+	bio.textContent = `Bio: ${userData.bio}`;
+
+	//structure
+	card.appendChild(userImg);
+	card.appendChild(cardInfo);
+	cardInfo.appendChild(user);
+	cardInfo.appendChild(userName);
+	cardInfo.appendChild(location);
+	cardInfo.appendChild(profile);
+	profile.appendChild(profileLink);
+	cardInfo.appendChild(follower);
+	cardInfo.appendChild(followingCount);
+	cardInfo.appendChild(bio);
+
+	return card;
+}
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
