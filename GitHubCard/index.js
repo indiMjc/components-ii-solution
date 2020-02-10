@@ -28,10 +28,13 @@ axios
 		console.log('The data was not returned', error);
 	});
 
-// refactored using Promise.all, async/await and IFFE (Immediately Invoked Function Expression)
+// Refactored using Promise.all, async/await and IFFE (Immediately Invoked Function Expression)
+// The function is wrapped ( ... )();  This is called an IFFE.  When the compiler reads this .js file, it will invoke the function immediately
+// Before the function keyword, we tell the compiler that this is an asynchronous function with the 'async' keyword
 
 // (async function getData() {
 // 	try {
+// 		// The destructured array represents the response from each of the axios calls, the first value is from the first axios call.  We tell the compiler to wait on the values returned from these axios calls with the 'await' keyword.  Promise.all() wraps these promises into a single function call.  We could also call them individually, each with the 'await' keyword
 // 		const [myUserData, myFollowersData] = await Promise.all([
 // 			axios.get('https://api.github.com/users/indiMjc'),
 // 			axios.get('https://api.github.com/users/indiMjc/followers')
@@ -39,7 +42,9 @@ axios
 
 // 		cardContainer.appendChild(CardMaker(myUserData.data));
 
+// 		// Since we're doing axios calls inside this loop, we tell the compiler to wait on them with the 'await' keyword before the loop callback paramater
 // 		myFollowersData.data.forEach(async user => {
+// 			// We tell the compiler to wait on the response from this axios calls and declare the response as a variable 'getFollower'
 // 			const getFollower = await axios.get(user.url);
 
 // 			cardContainer.appendChild(CardMaker(getFollower.data));
