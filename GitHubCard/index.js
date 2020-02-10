@@ -76,7 +76,7 @@ function CardMaker(userData) {
 	location.textContent = `Location: ${userData.location}`;
 	profile.textContent = `Profile: `;
 	profileLink.textContent = userData.html_url;
-	profileLink.href = userData.hrml_url;
+	profileLink.href = userData.html_url;
 	follower.textContent = `Followers: ${userData.followers}`;
 	followingCount.textContent = `Following: ${userData.following}`;
 	bio.textContent = `Bio: ${userData.bio}`;
