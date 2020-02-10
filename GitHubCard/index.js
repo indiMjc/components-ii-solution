@@ -13,10 +13,10 @@ axios
 		console.log('The data was not returned', error);
 	});
 
-//stretch
 axios
 	.get('https://api.github.com/users/indiMjc/followers')
 	.then(response => {
+		//stretch
 		response.data.forEach(async user => {
 			const userResponse = await axios.get(user.url);
 			cardContainer.appendChild(CardMaker(userResponse.data));
