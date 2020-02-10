@@ -18,8 +18,10 @@ axios
 	.then(response => {
 		//stretch
 		response.data.forEach(async user => {
-			const userResponse = await axios.get(user.url);
-			cardContainer.appendChild(CardMaker(userResponse.data));
+      axios.get(user.url)
+        .then(response => {
+				  cardContainer.appendChild(CardMaker(response.data));
+			});
 		});
 	})
 	.catch(error => {
