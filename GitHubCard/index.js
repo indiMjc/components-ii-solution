@@ -17,7 +17,7 @@ axios
 	.get('https://api.github.com/users/indiMjc/followers')
 	.then(response => {
 		//stretch
-		response.data.forEach(async user => {
+		response.data.forEach(user => {
       axios.get(user.url)
         .then(response => {
 				  cardContainer.appendChild(CardMaker(response.data));
