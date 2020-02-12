@@ -72,26 +72,30 @@ function CardMaker(userData) {
 }
 
   
-
-// Alternative solution (comment out lines 3-25 and uncomment 84-114):
+/*
+Alternative solution (comment out lines 3-25 and uncomment 85-127):
   
-// Vocabulary:  Promises, Promise.all(), async/await, IFFE (Immediately Invoked Function Expression), destructuring
+Vocabulary:  Promises, Promise.all(), async/await, IFFE (Immediately Invoked Function Expression), destructuring
 
-// Refactored .then().catch() example above using Promise.all, async/await and IFFE.
+Refactored .then().catch() example above using Promise.all, async/await and IFFE.
 
-// The function is wrapped ( ... )();  This is called an IFFE.  When the compiler reads this .js file, it will invoke the function immediately.
-// Before the function keyword, we tell the compiler that this is an asynchronous function with the 'async' keyword.
+The function is wrapped ( ... )();  This is called an IFFE.  When the compiler reads this .js file, it will invoke the function immediately.
+Before the function keyword, we tell the compiler that this is an asynchronous function with the 'async' keyword.
+*/
 // (async function getData() {
+// 	// The code we are `trying` to run is wrapped in a try { ... } block, followed by the catch () { ... } below
 // 	try {
-//     // The destructured array represents the response from each of the axios calls, 
-//     // the first value is from the first axios call.  We tell the compiler to wait 
-//     // on the values returned from these Promises with the 'await' keyword.  
-//     // Promise.all() wraps these promises into a single function call.  These values 
-//     // that are returned as Promises can be accessed by referencing the variable 
-//     // names from the destructured array.  
-    
-//     // We could also invoke the Promises individually, each with the 'await' keyword, 
-//     // ex: const myUserData = await axios.get('https://api.github.com/users/indiMjc');
+// 		/*
+// 		The destructured array represents the response from each of the axios calls, 
+// 		the first value is from the first axios call.  We tell the compiler to wait 
+// 		on the values returned from these Promises with the 'await' keyword.  
+// 		Promise.all() wraps these promises into a single function call.  These values 
+// 		that are returned as Promises can be accessed by referencing the variable 
+// 		names from the destructured array.  
+		
+// 		We could also invoke the Promises individually, each with the 'await' keyword, 
+// 		ex: const myUserData = await axios.get('https://api.github.com/users/indiMjc');
+// 		*/
 // 		const [myUserData, myFollowersData] = await Promise.all([
 // 			axios.get('https://api.github.com/users/indiMjc'),
 // 			axios.get('https://api.github.com/users/indiMjc/followers')
@@ -99,15 +103,24 @@ function CardMaker(userData) {
 
 // 		cardContainer.appendChild(CardMaker(myUserData.data));
 
-//     // Since we're doing axios calls inside this loop, we tell the compiler that this is an 
-//     // asynchronous function with the 'async' keyword before the loop callback paramater
+// 		/*
+// 		Since we're doing axios calls inside this loop, we tell the compiler that this is an 
+// 		asynchronous function with the 'async' keyword before the loop callback paramater
+// 		*/
 // 		myFollowersData.data.forEach(async user => {
-//       // We tell the compiler to wait on the response from this axios call with the 'await' 
-//       // keyword and declare the response as a variable 'getFollower'
+// 			/*
+// 			We tell the compiler to wait on the response from this axios call with the 'await' 
+// 			keyword and declare the response as a variable 'getFollower'
+// 	  		*/
 // 			const getFollower = await axios.get(user.url);
 
 // 			cardContainer.appendChild(CardMaker(getFollower.data));
 // 		});
+// 	/*
+// 	The catch block has a parameter representing potential errors that may be thrown when 
+// 	attempting to return the Promises from above.  Inside of this block we handle exceptions/errors.  
+// 	Ignoring the catch block will throw warnings in the	console if the Promise fails to resolve.
+// 	*/
 // 	} catch (err) {
 // 		console.log('Data was not returned', err);
 // 	}
