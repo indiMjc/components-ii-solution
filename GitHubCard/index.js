@@ -79,12 +79,13 @@ Vocabulary:  Promises, Promise.all(), async/await, IFFE (Immediately Invoked Fun
 
 Refactored .then().catch() example above using Promise.all, async/await and IFFE.
 
-The function is wrapped ( ... )();  This is called an IFFE.  When the compiler reads this .js file, it will invoke the function immediately.
-Before the function keyword, we tell the compiler that this is an asynchronous function with the 'async' keyword.
+The function is wrapped ( ... )();  This is called an IFFE.  When the compiler reads this .js file, it will 
+invoke the function immediately. Before the function keyword, we tell the compiler that this is an asynchronous 
+function with the 'async' keyword.
 */
 // (async function getData() {
-// 	// The code we are `trying` to run is wrapped in a try { ... } block, followed by the catch () { ... } below
-// 	try {
+// 	// The code we are trying to run is wrapped in a try { ... } block, followed by the catch () { ... } below
+// 	try {		
 // 		/*
 // 		The destructured array represents the response from each of the axios calls, 
 // 		the first value is from the first axios call.  We tell the compiler to wait 
@@ -119,7 +120,7 @@ Before the function keyword, we tell the compiler that this is an asynchronous f
 // 	/*
 // 	The catch block has a parameter representing potential errors that may be thrown when 
 // 	attempting to return the Promises from above.  Inside of this block we handle exceptions/errors.  
-// 	Ignoring the catch block will throw warnings in the	console if the Promise fails to resolve.
+// 	Ignoring the catch block will throw warnings in the console if the Promise fails to resolve.
 // 	*/
 // 	} catch (err) {
 // 		console.log('Data was not returned', err);
