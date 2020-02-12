@@ -14,7 +14,7 @@ axios
 	.then(response => {
 		response.data.forEach(user => {
 			axios.get(user.url)
-        	.then(response => {
+			.then(response => {
 				cardContainer.appendChild(CardMaker(response.data));
 			});
 		});
